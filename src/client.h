@@ -20,10 +20,19 @@ namespace rv_client{
         RVClient(std::string  address, unsigned short port);
         RVClient(std::string  address);
         RVClient() = default;
-        void run_client();
+        int run_client();
 
     private:
         unsigned short m_port = 8000;
         std::string m_address = "127.0.0.1";
+        static unsigned int server_connect;
+
+        static bool is_run_operating_loop;
+
+        int init_and_connect();
+        void run_operating_loop();
+        static void shutdown();
+
+        static void * ClientHandler();
     };
 }
